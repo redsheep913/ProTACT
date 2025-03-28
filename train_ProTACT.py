@@ -12,6 +12,35 @@ from evaluators.multitask_evaluator_all_attributes import Evaluator as AllAttEva
 from tensorflow import keras
 import matplotlib.pyplot as plt
 
+
+import nltk
+import os
+
+# 設定自定義下載路徑
+download_dir = "/share/nas169/jasonsung/ProTACT/nltk_data"
+
+# 確保目錄存在
+os.makedirs(download_dir, exist_ok=True)
+
+# 關鍵步驟：將自定義路徑添加到 NLTK 搜索路徑的開頭
+nltk.data.path.insert(0, download_dir)
+
+# 下載資源（如果尚未下載）
+# nltk.download(['punkt', 'averaged_perceptron_tagger', 'wordnet', 'stopwords'], download_dir=download_dir)
+
+# 再次確認 NLTK 搜索路徑（應該包含我們的自定義路徑）
+print("NLTK 搜索路徑:")
+print(nltk.data.path)
+
+# 測試資源是否可用
+try:
+    nltk.data.find('tokenizers/punkt')
+    nltk.data.find('taggers/averaged_perceptron_tagger')
+    print("所有資源都已成功安裝並可訪問！")
+except LookupError as e:
+    print(f"資源錯誤: {e}")
+
+
 class CustomHistory(keras.callbacks.Callback):
     def init(self):
         self.train_loss = []

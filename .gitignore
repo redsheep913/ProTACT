@@ -1,0 +1,16 @@
+# Large files
+*.zip
+*.txt
+*.log
+*.pyc
+embeddings/
+*.cpython-37.pyc
+nltk_data/
+
+# ProTACT files
+glove.6B*.txt
+glove.6B.zip*
+output_train_ProTACT.log
+
+# customized files
+download.py
